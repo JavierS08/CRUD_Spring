@@ -1,0 +1,129 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org/"><head>
+  <link rel="shortcut icon" href="https://img-medianova.mncdn.com/wp-content/uploads/2018/08/favicon-80x80.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Error 403 | Medianova</title>
+
+
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+    body{
+      font-weight:100;
+      font-family: 'Montserrat', sans-serif;
+      text-align:center;
+    }
+    strong{
+      font-weight:900;
+    }
+    .error_num{font-size: 9em;}
+    .error_num{
+      margin-top: 10px;
+      color: #959595;
+    }
+    .circle{
+      border:solid 5px;
+      height:200px;
+      width:200px;
+      border-radius:100%;
+      float:left;
+
+    }
+
+    .content{text-align:center;width:680px;height:250px;margin:auto;margin-top: 30px;}
+    .sub_title{
+      font-size: 2rem;
+      color:#7e7e7e;
+      margin-top: -10px;
+    }
+    .working{
+      border-color:#00ff00;
+    }
+    .error{
+      border-color:#ed1c24;
+    }
+    .graycircle{
+      background-color: #f2f2f2;
+      height:180px;
+      border-radius:100%;
+      margin:10px;
+    }
+    .step{/* float: left; */width: 210px;margin: auto;}
+    .step:not(:last-child) {
+      margin-right: 25px !important;
+    }
+    .step_name{
+
+      font-size: 18px;
+      color: #7e7e7e;
+    }
+    .status{
+      font-size: 20px;
+      color:#00ff00;
+      font-weight:900;
+    }
+    .red{color:#ed1c24;}
+    .status_icon{
+      top: -23px;
+      position: relative;
+    }
+    .circle_icon{
+      margin:50px}
+
+    @media (max-width:690px){
+
+      .content{
+        width:100%;
+      }
+      .step{
+        /* width:30%; */
+      }
+      .circle{
+        /* width: 90px; */
+        /* height: 90px; */
+        /* margin: auto; */
+        /* margin-left: 50%; */
+        /* position: relative; */
+        /* left: -45px; */
+      }
+
+      .circle_icon{
+        /* width:40px; */
+        /* margin:20px 0px 0px 0px; */
+      }
+
+      .step:not(:last-child) {
+        margin-right: 2%!important
+      }
+      .step_name, .status{
+        font-size:14px !important;
+      }
+    }s
+  </style>
+</head>
+
+<body data-gr-c-s-loaded="true">
+<!-- partial:index.partial.html -->
+
+
+<br><br>
+<div class="content">
+
+  <div class="step">
+    <div class="circle error">
+      <div class="graycircle">
+        <img class="circle_icon" src="http://img-medianova.mncdn.com/wp-content/uploads/assets/demo/502/forbidden1.svg?=v01" width="80px">
+      </div>
+    </div>
+    <img class="status_icon" src="http://img-medianova.mncdn.com/wp-content/uploads/assets/demo/502/error.svg" width="40px">
+
+
+  </div>
+
+
+</div>
+<div class="error_num"> <strong>403</strong><br></div><p class="sub_title">Forbidden</p><!-- partial -->
+
+<a class="sub_title" th:href="@{/}">Go back</a><!-- partial -->
+
+</body></html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1>Portal de Usuario</h1>
+
+<h4>
+  <span>Usuario actual: </span>
+  <span th:text="${user}"></span>
+</h4>
+
+<a class="btn btn-primary" th:href="@{/}">Volver a Index</a>
+
+
+<a class="btn btn-primary" th:href="@{/user/perfil}">Perfil de Usuario</a>
+<a class="btn btn-primary" th:href="@{/user/tareas/listado}">Administrar mis tareas</a>
+
+<a class="btn btn-primary" th:href="@{/admin}">Portal de Administrador</a>
+
+<a class="btn btn-primary" th:href="@{/login}">Iniciar Sesión</a>
+<a class="btn btn-primary" th:href="@{/logout}">Cerrar sesión</a>
+</body>
+</html>

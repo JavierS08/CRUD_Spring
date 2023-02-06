@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:insert="plantilla.html::head">
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<h1>Index</h1>
+<header th:fragment="header">
+    <nav class="navbar navbar-expand-lg bg-info">
+        <div class="container-fluid">
+            <a class="navbar-brand text-danger"  href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="btn btn-primary" th:href="@{/}">Home</a>
+                    </li>
+                    <!--Posicionar el nombre de usuario al final del navbar-->
+                    <li class="nav-item">
+                        <p>
+                            <a class="btn btn-primary" th:href="@{/user}">Portal de Usuarios</a>
+                        </p>
+                    </li>
+                    <li class="nav-item">
+                        <p>
+                            <a class="btn btn-primary" th:href="@{/admin}">Portal de Administrador</a>
+                    </li>
+                </ul>
+
+                <h4>
+                    <span>Usuario actual: </span>
+                    <span th:text="${user}"></span>
+                </h4>
+                <li><a class="btn btn-danger" th:href="@{/logout}">Cerrar sesión</a></li>
+            </div>
+        </div>
+    </nav>
+</header>
+
+</body>
+</html>
