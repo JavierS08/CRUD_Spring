@@ -6,6 +6,39 @@
     <title></title>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg bg-info">
+    <div class="container-fluid">
+        <h4>Bienvenido: </h4>
+        <h4 class="text-danger" th:text="${user}"></h4>
 
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="btn btn-primary" th:href="@{/}">Home</a>
+                </li>
+                <!--Posicionar el nombre de usuario al final del navbar-->
+                <li class="nav-item">
+                    <p>
+                        <a class="btn btn-primary" th:href="@{/user}">Portal de Usuarios</a>
+                    </p>
+                </li>
+                <li class="nav-item">
+                    <p>
+                        <a class="btn btn-primary" th:href="@{/admin}">Portal de Administrador</a>
+                </li>
+
+            </ul>
+            <ul class="d-flex">
+                <ol class="nav-item">
+                    <a class="btn btn-primary" th:href="@{/login}">Iniciar Sesión</a>
+                </ol>
+                <ol class="nav-item">
+                    <a class="btn btn-danger" th:href="@{/logout}">Cerrar sesión</a>
+                </ol>
+            </ul>
+        </div>
+    </div>
+</nav>
+</header>
 </body>
 </html>

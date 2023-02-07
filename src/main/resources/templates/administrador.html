@@ -5,17 +5,10 @@
   <title>Portal del Administrador</title>
 </head>
 <body>
-<h4>
-  <span>Usuario actual: </span>
-  <span th:text="${user}"></span>
-</h4>
+<header th:insert="plantilla.html">
 
-<a class="btn btn-primary" th:href="@{/}">Volver a Index</a>
-
+</header>
 <a class="btn btn-primary" th:href="@{/admin/dashboard}">Ir al dashboard </a>
 
-
-<a class="btn btn-primary" th:href="@{/login}">Iniciar Sesión</a>
-<a class="btn btn-primary" th:href="@{/logout}">Cerrar sesión</a>
 </body>
 </html>

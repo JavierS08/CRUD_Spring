@@ -5,8 +5,32 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Mostrar Usuarios</h1>
+<header th:insert="plantilla.html">
 
-<a class="btn btn-primary" th:href="@{/logout}">Cerrar sesión</a>
+</header>
+<h1>Mostrar Usuarios</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">NIF</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellidos</th>
+        <th scope="col">Contraseña</th>
+        <th scope="col">Activo</th>
+        <th scope="col">Acción</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user:${listaUsuarios}">
+        <td th:text="${user.getNif()}"></td>
+        <td th:text="${user.getNombre()}"></td>
+        <td th:text="${user.getApellidos()}"></td>
+        <td th:text="${user.getPw()}"></td>
+        <td th:text="${user.getActivo()}"></td>
+        <td><a class="btn btn-primary" th:href="@{/admin/usuario/editar}">Editar</a></td>
+    </tr>
+
+    </tbody>
+</table>
 </body>
 </html>
