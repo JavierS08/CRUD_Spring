@@ -5,16 +5,18 @@ import com.example.hi_javier.jpa.Usuario;
 import com.example.hi_javier.servicios.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class Controlador {
-
+//    @Autowired
+//    PasswordEncoder encoder;
     @Autowired
     UsuarioService usuarios;
      @RequestMapping("/")
@@ -51,10 +53,18 @@ public class Controlador {
     @RequestMapping("/user/perfil")
     public ModelAndView peticionPerfil(Authentication aut) {
         ModelAndView mv = new ModelAndView();
+        Usuario user=null;
         if(aut==null)
             mv.addObject("user", "No se ha iniciado sesión");
         else
             mv.addObject("user", aut.getName());
+        Optional<Usuario> userOptional= usuarios.buscarUsuario(aut.getName());
+        if (userOptional.isPresent()) {
+            user = userOptional.get();
+
+
+        }
+        mv.addObject("usuario", user);
         mv.setViewName("perfil");
         return mv;
     }

@@ -25,6 +25,10 @@ public class DatabaseWebSecurity {
                 .authoritiesByUsernameQuery("SELECT NIF, rol FROM roles WHERE NIF=?");
 
     }
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable();
