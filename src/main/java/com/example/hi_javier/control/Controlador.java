@@ -43,6 +43,15 @@ public class Controlador {
         mv.setViewName("login");
         return mv;
     }
+
+
+    @RequestMapping("registro")
+    public ModelAndView peticionResgistro() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("registro");
+        return mv;
+    }
+
     @RequestMapping("/denegado")
     public ModelAndView peticionDenegado(Authentication aut) {
         ModelAndView mv = new ModelAndView();
