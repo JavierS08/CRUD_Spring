@@ -32,4 +32,5 @@ public class UsuarioService {
     public void guardarUsuario(Usuario user) {
         usuarios.save(user);
     }
+
 }

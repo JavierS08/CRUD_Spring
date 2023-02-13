@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Please sing in</title>
+  <link rel="stylesheet" th:href="@{/css/estilologin.css}">
+
+</head>
+<body>
+<header th:insert="plantilla.html">
+</header>
+<form th:action="@{/guardar}" th:object="${usuario}" method="post"></form>
+<div class="login-box">
+  <h2>Registro nuevo usuario</h2>
+  <form method="post" action="/guardar">
+    <div class="user-box">
+      <input type="text" id="nif" name="username" required="" th:field="*{usuario.nif}" >
+      <label>Username(NIF)</label>
+    </div>
+    <div class="user-box">
+      <input type="text" id="username" name="user" required="" th:field="*{usuario.nombre}">
+      <label>Username</label>
+    </div>
+    <div class="user-box">
+      <input type="text" id="apellido" name="apellido" required="" th:field="*{usuario.apellidos}">
+      <label>Apellido</label>
+    </div>
+    <div class="user-box">
+      <input type="password" id="password" name="password" required="" th:field="*{usuario.pw}">
+      <label>Password</label>
+    </div>
+    <div class="user-box">
+      <input type="number" id="activo" name="password" min="0" max="1" required="" th:field="*{usuario.activo}">
+      <label>Activo</label>
+    </div>
+    <button type="submit">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Crear nuevo Usuario
+    </button>
+  </form>
+  </div>
+</body>
+</html>
