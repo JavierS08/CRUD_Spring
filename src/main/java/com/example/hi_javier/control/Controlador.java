@@ -96,19 +96,9 @@ public class Controlador {
             mv.addObject("user", "No se ha iniciado sesión");
         else
             mv.addObject("user", aut.getName());
-        mv.setViewName("perfil");
+        mv.addObject("tareas", tareas.buscarTarea(aut.getName()));
+
         mv.setViewName("listadotareas");
-        return mv;
-    }
-    @RequestMapping("/admin/dashboard")
-    public ModelAndView peticioDashboard(Authentication aut) {
-        ModelAndView mv = new ModelAndView();
-        if(aut==null)
-            mv.addObject("user", "No se ha iniciado sesión");
-        else
-            mv.addObject("user", aut.getName());
-        mv.setViewName("perfil");
-        mv.setViewName("dashboard");
         return mv;
     }
     @RequestMapping("/admin/usuario/mostrar")
