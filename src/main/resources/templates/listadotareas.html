@@ -9,24 +9,36 @@
 
 </header>
 <h1>Listado tareas</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Acción</th>
+        </tr>
+        </thead>
 
-    <!--Mostrar tareas de el usuario logueado -->
-<!--    <table class="table">-->
-<!--        <thead>-->
-<!--        <tr>-->
-<!--            <th scope="col">Nombre</th>-->
-<!--            <th scope="col">Descripción</th>-->
-<!--            <th scope="col">Estado</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        <tr th:each="tarea:${tareas}">-->
-<!--            <td th:text="${tarea.getNombre()}"></td>-->
-<!--            <td th:text="${tarea.getDescripcion()}"></td>-->
-<!--            <td th:text="${tarea.getEstado()}"></td>-->
-<!--        </tr>-->
-<!--        </tbody>-->
-<!--    </table>-->
+        <tbody>
+        <form th:action="@{/admin/usuario/editar}" method="get">
+        <th:block th:each="user : ${listaUsuarios}">
+        <tr th:each="tarea : ${user.getTareas()}">
 
+                <td th:text="${tarea.getNombre()}"></td>
+                <td th:text="${tarea.getDescripcion()}"></td>
+                <td th:text="${tarea.getEstado()}"></td>
+                <td><a class="btn btn-primary" th:href="@{/user/tareas/editar}">Editar</a>
+                <a class="btn btn-danger" th:href="@{/admin}">Eliminar</a></td>
+        </tr>
+        </th:block>
+        </form>
+        </tbody>
+    </table>
+
+
+
+    <a class="btn btn-primary" th:href="@{/user/tareas/nueva}">
+        Crear tarea
+    </a>
 </body>
 </html>

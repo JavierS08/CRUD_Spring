@@ -2,6 +2,7 @@ package com.example.hi_javier.control;
 
 
 import com.example.hi_javier.jpa.Role;
+import com.example.hi_javier.jpa.Tarea;
 import com.example.hi_javier.jpa.Usuario;
 import com.example.hi_javier.servicios.RoleService;
 import com.example.hi_javier.servicios.TareaService;
@@ -39,6 +40,10 @@ public class Controlador {
          else
              mv.addObject("user", aut.getName());
             mv.addObject("tareas", tareas.listaTareas());
+         String texto = "amelia123";
+         String encriptado = encoder.encode(texto);
+         System.out.println("Texto original: "+texto);
+         System.out.println("Texto emcriptado: "+encriptado);
          mv.setViewName("index");
          return mv;
         }
@@ -82,13 +87,37 @@ public class Controlador {
     @RequestMapping("/user/tareas/nueva")
     public ModelAndView peticioNuevaTarea(Authentication aut) {
         ModelAndView mv = new ModelAndView();
+        Tarea tarea = new Tarea();
+        mv.addObject("tarea", tarea);
         if(aut==null)
             mv.addObject("user", "No se ha iniciado sesión");
         else
             mv.addObject("user", aut.getName());
+
         mv.setViewName("nuevatarea");
         return mv;
     }
+
+    @RequestMapping("/user/tareas/editar")
+    public ModelAndView peticionEditarTarea(Authentication aut) {
+        ModelAndView mv = new ModelAndView();
+        Tarea tarea = new Tarea();
+        mv.addObject("tarea", tarea);
+        if(aut==null)
+            mv.addObject("user", "No se ha iniciado sesión");
+        else
+            mv.addObject("user", aut.getName());
+
+        mv.setViewName("editartareas");
+        return mv;
+    }
+    @RequestMapping("/editartarea")
+    public String peticionEditarT(Authentication aut, Tarea tarea) {
+
+         tareas.guardarTarea(tarea);
+         return "redirect:/user/tareas/listado";
+    }
+
     @RequestMapping("/user/tareas/listado")
     public ModelAndView peticioListdoTareas(Authentication aut) {
         ModelAndView mv = new ModelAndView();
@@ -96,7 +125,14 @@ public class Controlador {
             mv.addObject("user", "No se ha iniciado sesión");
         else
             mv.addObject("user", aut.getName());
-        mv.addObject("tareas", tareas.buscarTarea(aut.getName()));
+        List<Usuario> listaUsuario=usuarios.listaUsuarios();
+        for (Usuario user: listaUsuario) {
+            System.out.println(user.getNif()+" "+user.getNombre());
+            for (Tarea tarea: user.getTareas()) {
+                System.out.println(tarea.getNombre()+" "+tarea.getDescripcion()+" "+tarea.getEstado());
+            }
+        }
+        mv.addObject("listaUsuarios", listaUsuario);
 
         mv.setViewName("listadotareas");
         return mv;
@@ -136,6 +172,23 @@ public class Controlador {
         Usuario c = new Usuario();
         mv.addObject("usuario", c);
         mv.setViewName("nuevousuario");
+        return mv;
+    }
+    @RequestMapping("/guardartarea")
+    public ModelAndView peticionGuardarTarea(Tarea tarea,Authentication aut) {
+        ModelAndView mv = new ModelAndView();
+        Usuario user= usuarios.buscarUsuario(aut.getName()).get();
+        if(aut==null)
+            mv.addObject("user", "No se ha iniciado sesión");
+        else{
+            mv.addObject("user", aut.getName());
+
+        }
+            tarea.setUsuario(user);
+            tareas.guardarTarea(tarea);
+            mv.addObject("sms", "Tarea guardada");
+
+        mv.setViewName("informa");
         return mv;
     }
     @RequestMapping("/guardar")

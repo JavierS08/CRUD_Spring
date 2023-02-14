@@ -3,12 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/estilologin.css}">
 </head>
 <body>
 <header th:insert="plantilla.html">
 
 </header>
 <h1>Nueva Tarea</h1>
-
+<form th:action="@{/guardartarea}"method="post" th:object="${tarea}"></form>
+<div class="login-box">
+    <h2>Registro nueva tarea</h2>
+    <form method="post" action="/guardartarea">
+        <div class="user-box">
+            <input type="text" id="nif" name="username" required="" th:field="*{tarea.nombre}" >
+            <label>Nombre</label>
+        </div>
+        <div class="user-box">
+            <input type="text" id="username" name="user" required="" th:field="*{tarea.descripcion}">
+            <label>Descripcion</label>
+        </div>
+        <div class="user-box">
+            <input type="text" id="apellido" name="apellido" required="" th:field="*{tarea.estado}">
+            <label>Estado</label>
+        </div>
+        <button type="submit">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Crear nuevo Usuario
+        </button>
+    </form>
+</div>
 </body>
 </html>

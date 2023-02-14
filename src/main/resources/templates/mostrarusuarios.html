@@ -29,8 +29,8 @@
         <td th:text="${user.getApellidos()}"></td>
         <td th:text="${user.getPw()}"></td>
         <td th:text="${user.getActivo()}"></td>
-        <td><button class="btn btn-primary" type="submit" th:value="${user.getNif()}" name="nif">Editar</button></td>
-        <td><a class="btn btn-danger" th:href="@{/admin}">Eliminar</a></td>
+        <td><button class="btn btn-primary" type="submit" th:value="${user.getNif()}" name="nif">Editar</button>
+        <a class="btn btn-danger" th:href="@{/admin}">Eliminar</a></td>
     </form>
         <!-- Eliminar-->
 
