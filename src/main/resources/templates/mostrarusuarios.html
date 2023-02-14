@@ -9,7 +9,7 @@
 
 </header>
 <h1>Mostrar Usuarios</h1>
-<form th:action="@{/admin/usuario/editar}" method="get">
+
 <table class="table">
     <thead>
     <tr>
@@ -22,6 +22,7 @@
     </tr>
     </thead>
     <tbody>
+    <form th:action="@{/admin/usuario/editar}" method="get">
     <tr th:each="user:${listaUsuarios}">
         <td th:text="${user.getNif()}"></td>
         <td th:text="${user.getNombre()}"></td>
@@ -29,11 +30,15 @@
         <td th:text="${user.getPw()}"></td>
         <td th:text="${user.getActivo()}"></td>
         <td><button class="btn btn-primary" type="submit" th:value="${user.getNif()}" name="nif">Editar</button></td>
-    </tr>
+        <td><a class="btn btn-danger" th:href="@{/admin}">Eliminar</a></td>
+    </form>
+        <!-- Eliminar-->
 
+
+    </tr>
     </tbody>
 </table>
-</form>
+
 <a class="btn btn-primary" type="submit" th:href="@{/admin/usuario/nuevo}">Nuevo Usuario</a>
 </body>
 </html>
