@@ -137,7 +137,7 @@ public class Controlador {
         tarea.setId(Integer.parseInt(id));
         tareas.borrar(tarea);
 
-        return "redirect:/user/tareas/listado";
+        return "redirect:/";
     }
 
     @RequestMapping("/elminarusuario")
