@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:insert="plantilla.html">
+</header>
+<h1>Tareas de todos los Usuarios</h1>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Nombre</th>
+    <th scope="col">Descripción</th>
+    <th scope="col">Estado</th>
+    <th scope="col">Usuario</th>
+    <th scope="col">Acción</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <form th:action="@{/admin/usuario/editar}" method="get">
+    <th:block th:each="user : ${listaUsuarios}">
+      <tr th:each="tarea : ${user.getTareas()}">
+
+        <td th:text="${tarea.getNombre()}"></td>
+        <td th:text="${tarea.getDescripcion()}"></td>
+        <td th:text="${tarea.getEstado()}"></td>
+        <td th:text="${tarea.getUsuario().getNif()}"></td>
+        <td><a class="btn btn-primary" th:href="@{/user/tareas/editar}">Editar</a>
+          <a class="btn btn-danger" th:href="@{/admin}">Eliminar</a></td>
+      </tr>
+    </th:block>
+  </form>
+  </tbody>
+</table>
+</body>
+</html>

@@ -5,12 +5,11 @@
     <title>Home</title>
 </head>
 <body>
-<h1>Index</h1>
 <header th:insert="plantilla.html">
-
 </header>
-<div>
-    <h1>Tareas por realizar</h1>
+<h1>Index</h1>
+<div th:if="${usuario!=null}">
+    <h1>Tareas</h1>
     <table class="table">
         <thead>
         <tr>
@@ -20,22 +19,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="tarea:${tareas}">
+        <tr th:each="tarea:${usuario.getTareas()}">
             <td th:text="${tarea.getNombre()}"></td>
             <td th:text="${tarea.getDescripcion()}"></td>
             <td th:text="${tarea.getEstado()}"></td>
         </tr>
         </tbody>
     </table>
-
-<!--            <span th:if="${tareas.size() == 0}">No hay tareas por realizar</span>-->
-<!--            <span>Nombre: <span th:text=""></span></span>-->
-<!--            <span>Descripción</span>-->
-<!--            <span>Fecha de creación</span>-->
-<!--            <span>Fecha de finalización</span>-->
-<!--            <span>Estado</span>-->
-
-
 
 </div>
 </body>

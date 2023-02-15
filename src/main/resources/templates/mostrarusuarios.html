@@ -16,7 +16,6 @@
         <th scope="col">NIF</th>
         <th scope="col">Nombre</th>
         <th scope="col">Apellidos</th>
-        <th scope="col">Contraseña</th>
         <th scope="col">Activo</th>
         <th scope="col">Acción</th>
     </tr>
@@ -27,7 +26,6 @@
         <td th:text="${user.getNif()}"></td>
         <td th:text="${user.getNombre()}"></td>
         <td th:text="${user.getApellidos()}"></td>
-        <td th:text="${user.getPw()}"></td>
         <td th:text="${user.getActivo()}"></td>
         <td><button class="btn btn-primary" type="submit" th:value="${user.getNif()}" name="nif">Editar</button>
         <a class="btn btn-danger" th:href="@{/admin}">Eliminar</a></td>

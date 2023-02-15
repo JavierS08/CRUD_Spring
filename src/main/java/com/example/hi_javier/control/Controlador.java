@@ -33,17 +33,28 @@ public class Controlador {
      @RequestMapping("/")
         public ModelAndView peticionRaiz(Authentication aut){
          ModelAndView mv = new ModelAndView();
+         Usuario username = null;
 //         System.out.println("Usuario: " + aut.getName());
 //         System.out.println(aut.getAuthorities());
          if(aut==null)
              mv.addObject("user", "No se ha iniciado sesión");
-         else
+         else {
              mv.addObject("user", aut.getName());
-            mv.addObject("tareas", tareas.listaTareas());
-         String texto = "amelia123";
-         String encriptado = encoder.encode(texto);
-         System.out.println("Texto original: "+texto);
-         System.out.println("Texto emcriptado: "+encriptado);
+//            mv.addObject("tareas", tareas.listaTareas());
+             Optional<Usuario> userOptional = usuarios.buscarUsuario(aut.getName());
+
+             if (userOptional.isPresent()) {
+                 username = userOptional.get();
+
+             }
+
+         }
+
+         mv.addObject("usuario", username);
+//         String texto = "amelia123";
+//         String encriptado = encoder.encode(texto);
+//         System.out.println("Texto original: "+texto);
+//         System.out.println("Texto emcriptado: "+encriptado);
          mv.setViewName("index");
          return mv;
         }
@@ -121,19 +132,21 @@ public class Controlador {
     @RequestMapping("/user/tareas/listado")
     public ModelAndView peticioListdoTareas(Authentication aut) {
         ModelAndView mv = new ModelAndView();
+        Usuario username = null;
         if(aut==null)
             mv.addObject("user", "No se ha iniciado sesión");
-        else
+        else {
             mv.addObject("user", aut.getName());
-        List<Usuario> listaUsuario=usuarios.listaUsuarios();
-        for (Usuario user: listaUsuario) {
-            System.out.println(user.getNif()+" "+user.getNombre());
-            for (Tarea tarea: user.getTareas()) {
-                System.out.println(tarea.getNombre()+" "+tarea.getDescripcion()+" "+tarea.getEstado());
-            }
-        }
-        mv.addObject("listaUsuarios", listaUsuario);
+//            mv.addObject("tareas", tareas.listaTareas());
+            Optional<Usuario> userOptional = usuarios.buscarUsuario(aut.getName());
 
+            if (userOptional.isPresent()) {
+                username = userOptional.get();
+
+            }
+
+        }
+        mv.addObject("usuario", username);
         mv.setViewName("listadotareas");
         return mv;
     }
@@ -166,6 +179,22 @@ public class Controlador {
         mv.setViewName("editarusuarios");
         return mv;
     }
+    @RequestMapping("/admin/tareas")
+    public ModelAndView peticioTareaMostrar(Authentication aut) {
+        ModelAndView mv = new ModelAndView();
+        if(aut==null)
+            mv.addObject("user", "No se ha iniciado sesión");
+        else
+            mv.addObject("user", aut.getName());
+        List<Usuario> listaUsuario=usuarios.listaUsuarios();
+        for (Usuario user: listaUsuario) {
+            System.out.println(user.getNif()+" "+user.getNombre());
+        }
+        mv.addObject("listaUsuarios", listaUsuario);
+        mv.setViewName("mostrartareasall");
+        return mv;
+    }
+
     @RequestMapping("/admin/usuario/nuevo")
     public ModelAndView peticioUsuariosCrear() {
         ModelAndView mv = new ModelAndView();

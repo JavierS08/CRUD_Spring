@@ -6,6 +6,8 @@
   <link rel="stylesheet" th:href="@{/css/estilologin.css}">
 </head>
 <body>
+<header th:insert="plantilla.html">
+</header>
 <h1>Editar Tarea</h1>
 <form th:action="@{/editartarea}"method="post" th:object="${tarea}"></form>
 <div class="login-box">
@@ -23,13 +25,15 @@
       <input type="text" id="estado" name="estado" required="" th:field="*{tarea.estado}">
       <label>Estado</label>
     </div>
+
     <button type="submit">
       <span></span>
       <span></span>
       <span></span>
       <span></span>
-      Crear nuevo Usuario
+      Editar Tarea
     </button>
+<!--    <input type="hidden" th:field="*{tarea.getUsuario()}">-->
   </form>
 </div>
 </body>
