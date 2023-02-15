@@ -110,9 +110,12 @@ public class Controlador {
     }
 
     @RequestMapping("/user/tareas/editar")
-    public ModelAndView peticionEditarTarea(Authentication aut) {
+    public ModelAndView peticionEditarTarea(Authentication aut,HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
-        Tarea tarea = new Tarea();
+        int id = Integer.parseInt(request.getParameter("id"));
+        Optional<Tarea> tareaOptional= tareas.buscarTarea(String.valueOf(id));
+//        Optional<Usuario> usuarioOptional= usuarios.buscarUsuario(String.valueOf(id));
+        Tarea tarea= tareaOptional.get();
         mv.addObject("tarea", tarea);
         if(aut==null)
             mv.addObject("user", "No se ha iniciado sesión");
@@ -124,9 +127,28 @@ public class Controlador {
     }
     @RequestMapping("/editartarea")
     public String peticionEditarT(Authentication aut, Tarea tarea) {
-
+        tarea.setUsuario(usuarios.buscarUsuario(aut.getName()).get());
          tareas.guardarTarea(tarea);
          return "redirect:/user/tareas/listado";
+    }
+    @RequestMapping("/elminartarea")
+    public String peticionEliminarT(Authentication aut, Tarea tarea,HttpServletRequest request) {
+        String id = request.getParameter("id");
+        tarea.setId(Integer.parseInt(id));
+        tareas.borrar(tarea);
+
+        return "redirect:/user/tareas/listado";
+    }
+
+    @RequestMapping("/elminarusuario")
+    public String peticionEliminarU(Authentication aut, Usuario user, Role rol,HttpServletRequest request) {
+        String id = request.getParameter("nif");
+        user.setNif(id);
+        usuarios.buscarUsuario(id).get().getRoles().remove(rol);
+        rol.setUsuario(user);
+        roles.borrarRol(rol);
+        usuarios.borrar(user);
+        return "redirect:/";
     }
 
     @RequestMapping("/user/tareas/listado")
@@ -169,7 +191,10 @@ public class Controlador {
     public ModelAndView peticioUsuariosEditar(Authentication aut, HttpServletRequest request) {
         String nif = request.getParameter("nif");
         Optional<Usuario> userOptional= usuarios.buscarUsuario(nif);
-        Usuario user= userOptional.get();
+        Usuario user=null;
+        if (userOptional.isPresent()) {
+            user = userOptional.get();
+        }
         ModelAndView mv = new ModelAndView();
         if(aut==null)
             mv.addObject("user", "No se ha iniciado sesión");

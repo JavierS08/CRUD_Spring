@@ -21,15 +21,21 @@
     </tr>
     </thead>
     <tbody>
-    <form th:action="@{/admin/usuario/editar}" method="get">
+
     <tr th:each="user:${listaUsuarios}">
         <td th:text="${user.getNif()}"></td>
         <td th:text="${user.getNombre()}"></td>
         <td th:text="${user.getApellidos()}"></td>
         <td th:text="${user.getActivo()}"></td>
-        <td><button class="btn btn-primary" type="submit" th:value="${user.getNif()}" name="nif">Editar</button>
-        <a class="btn btn-danger" th:href="@{/admin}">Eliminar</a></td>
-    </form>
+        <form th:action="@{/admin/usuario/editar}" method="get">
+        <td><button class="btn btn-primary" type="submit" th:value="${user.getNif()}" name="nif">Editar</button></td>
+        </form>
+            <td>
+            <form th:action="@{/elminarusuario}" method="get">
+                <button class="btn btn-danger" type="submit" th:value="${user.getNif()}" name="nif">Eliminar</button>
+            </form>
+            </td>
+
         <!-- Eliminar-->
 
 

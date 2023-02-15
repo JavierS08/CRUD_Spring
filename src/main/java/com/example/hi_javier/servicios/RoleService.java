@@ -17,4 +17,8 @@ public class RoleService {
     public void guardarRol(Role rol) {
         roles.save(rol);
     }
+
+    public void borrarRol(Role rol) {
+        roles.delete(rol);
+    }
 }

@@ -24,6 +24,9 @@ public class TareaService {
         return tareas.findAll();
     }
 
+    public void borrar(Tarea t){
+        tareas.delete(t);
+    }
 
     public Optional<Tarea> buscarTarea(String usuario) {
         return tareas.findById(usuario);

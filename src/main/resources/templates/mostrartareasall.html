@@ -28,7 +28,8 @@
         <td th:text="${tarea.getDescripcion()}"></td>
         <td th:text="${tarea.getEstado()}"></td>
         <td th:text="${tarea.getUsuario().getNif()}"></td>
-        <td><a class="btn btn-primary" th:href="@{/user/tareas/editar}">Editar</a>
+        <td><button class="btn btn-primary" type="submit" th:value="${tarea.getId()}" name="nif">Editar</button></td>
+        <td>
           <a class="btn btn-danger" th:href="@{/admin}">Eliminar</a></td>
       </tr>
     </th:block>

@@ -28,6 +28,9 @@ public class UsuarioService {
         return usuarios.findById(login);
     }
 
+    public void borrar(Usuario u){
+        usuarios.delete(u);
+    }
 
     public void guardarUsuario(Usuario user) {
         usuarios.save(user);
