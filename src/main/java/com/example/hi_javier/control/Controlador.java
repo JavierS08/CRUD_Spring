@@ -141,14 +141,22 @@ public class Controlador {
     }
 
     @RequestMapping("/elminarusuario")
-    public String peticionEliminarU(Authentication aut, Usuario user, Role rol,HttpServletRequest request) {
-        String id = request.getParameter("nif");
-        user.setNif(id);
-        usuarios.buscarUsuario(id).get().getRoles().remove(rol);
-        rol.setUsuario(user);
-        roles.borrarRol(rol);
-        usuarios.borrar(user);
-        return "redirect:/";
+    public ModelAndView peticionEliminarU(Authentication aut, Usuario user, HttpServletRequest request) {
+        String nif = request.getParameter("nif");
+        Optional<Usuario> userOptional= usuarios.buscarUsuario(nif);;
+        List<Tarea> t = tareas.findByNif(nif);
+        List <Role> r = roles.findByNif(nif);
+        ModelAndView mv = new ModelAndView();
+        if (userOptional.isPresent()) {
+            t.forEach(tarea -> tareas.borrar(tarea));
+            r.forEach(rol -> roles.borrarRol(rol));
+            usuarios.borrar(user);
+            mv.addObject("sms", "Usuario eliminado correctamente");
+        }else{
+            mv.addObject("sms", "No se ha podido eliminar el usuario");
+        }
+        mv.setViewName("informa");
+        return mv;
     }
 
     @RequestMapping("/user/tareas/listado")
@@ -200,6 +208,7 @@ public class Controlador {
             mv.addObject("user", "No se ha iniciado sesión");
         else
             mv.addObject("user", aut.getName());
+
         mv.addObject("usuario", user);
         mv.setViewName("editarusuarios");
         return mv;
@@ -301,13 +310,4 @@ public class Controlador {
         mv.setViewName("usuario");
         return mv;
     }
-    /*
-/login
-/user/perfil
-/user/tareas/nueva
-/user/tareas/listado
-/admin/dashboard
-/admin/usuarios/mostrar
-/admin/usuarios/editar
-*/
 }

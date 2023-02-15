@@ -31,4 +31,12 @@ public class TareaService {
     public Optional<Tarea> buscarTarea(String usuario) {
         return tareas.findById(usuario);
     }
+
+   public void deleteByNif(String nif) {
+        tareas.deleteByNif(nif);
+    }
+
+    public List<Tarea> findByNif(String nif) {
+        return tareas.findByNif(nif);
+    }
 }

@@ -11,7 +11,7 @@
 <h1>Editar Tarea</h1>
 <form th:action="@{/editartarea}"method="post" th:object="${tarea}"></form>
 <div class="login-box">
-  <h2>Registro nueva tarea</h2>
+  <h2>Editar tarea</h2>
   <form method="post" action="/editartarea">
     <div class="user-box">
       <input type="text" id="nombre" name="nombre" required="" th:field="*{tarea.nombre}">

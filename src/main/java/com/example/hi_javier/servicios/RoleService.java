@@ -2,8 +2,11 @@ package com.example.hi_javier.servicios;
 
 
 import com.example.hi_javier.jpa.Role;
+import com.example.hi_javier.jpa.Tarea;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.ApplicationScope;
+
+import java.util.List;
 
 @Service
 @ApplicationScope
@@ -20,5 +23,13 @@ public class RoleService {
 
     public void borrarRol(Role rol) {
         roles.delete(rol);
+    }
+
+    public void deleteByNif(String nif) {
+        roles.deleteByNif(nif);
+    }
+
+    public List<Role> findByNif(String nif) {
+        return roles.findByNif(nif);
     }
 }
