@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Tarea</title>
+  <link rel="stylesheet" th:href="@{/css/estilologin.css}">
+</head>
+<body>
+<header th:insert="plantilla.html">
+</header>
+<h1>Crear Tarea</h1>
+<form th:action="@{/creartareaadmin}"method="post" th:object="${tarea}"></form>
+<div class="login-box">
+  <h2>Editar tarea</h2>
+  <form method="post" action="/creartareaadmin">
+    <div class="user-box">
+      <input type="text" id="user" name="user" required="" th:field="*{tarea.usuario.nif}">
+      <label>Nif Usuario</label>
+    </div>
+    <div class="user-box">
+      <input type="text" id="nombre" name="nombre" required="" th:field="*{tarea.nombre}">
+      <label>Nombre</label>
+    </div>
+    <div class="user-box">
+      <input type="text" id="descripcion" name="descripcion" required="" th:field="*{tarea.descripcion}">
+      <label>Descripcion</label>
+    </div>
+    <div class="user-box">
+      <input type="text" id="estado" name="estado" required="" th:field="*{tarea.estado}">
+      <label>Estado</label>
+    </div>
+    <input type="hidden" id="id" name="id" required="" th:field="*{tarea.id}">
+    <!--    <input type="hidden" id="usuario" name="usuario" required="" th:field="*{usuario}" >-->
+
+    <button type="submit">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Crear Tarea
+    </button>
+    <!--    <input type="hidden" th:field="*{tarea.getUsuario()}">-->
+  </form>
+</div>
+</body>
+</html>
