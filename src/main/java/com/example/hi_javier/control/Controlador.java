@@ -319,7 +319,11 @@ public class Controlador {
             mv.addObject("user", "No se ha iniciado sesión");
         else
             mv.addObject("user", aut.getName());
-        mv.setViewName("perfil");
+        mv.addObject("nuevas", tareas.cuentaTareas());
+        mv.addObject("proceso", tareas.cuentaTareasProc());
+        mv.addObject("terminada", tareas.cuentaTareasTer());
+        mv.addObject("eliminada", tareas.cuentaTareasElimina());
+        mv.addObject("cuentuser", usuarios.cuentausers());
         mv.setViewName("administrador");
         return mv;
     }

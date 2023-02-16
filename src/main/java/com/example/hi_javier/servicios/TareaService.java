@@ -39,4 +39,16 @@ public class TareaService {
     public List<Tarea> findByNif(String nif) {
         return tareas.findByNif(nif);
     }
+    public Integer cuentaTareas() {
+        return tareas.findByEstado();
+    }
+    public Integer cuentaTareasProc() {
+        return tareas.findByEstado2();
+    }
+    public Integer cuentaTareasTer() {
+        return tareas.findByEstado3();
+    }
+    public Integer cuentaTareasElimina() {
+        return tareas.findByEstado4();
+    }
 }

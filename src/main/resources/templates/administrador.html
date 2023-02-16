@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
   <meta charset="UTF-8">
   <title>Portal del Administrador</title>
@@ -10,5 +10,18 @@
 </header>
 <a class="btn btn-primary" th:href="@{/admin/usuario/mostrar}">Mostrar Usuario</a>
 <a class="btn btn-primary" th:href="@{/admin/tareas}">Mostrar Tareas de los Usuarios</a>
+<p><h3>Usuarios Activos: <span th:text="${cuentuser}"></span></h3></p>
+<div th:if="${nuevas!=null}">
+<p><h3>Tareas nuevas: <span th:text="${nuevas}"></span></h3></p>
+</div>
+<div th:if="${proceso!=null}">
+<p><h3>Tareas proceso: <span th:text="${proceso}"></span></h3></p>
+</div>
+<div th:if="${terminada!=null}">
+<p><h3>Tareas terminada: <span th:text="${terminada}"></span></h3></p>
+</div>
+<div th:if="${eliminada!=null}">
+<p><h3>Tareas eliminadas: <span th:text="${eliminada}"></span></h3></p>
+</div>
 </body>
 </html>

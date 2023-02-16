@@ -63,4 +63,14 @@ public class Tarea implements Serializable {
         this.usuario = usuario;
     }
 
+    @Override
+    public String toString() {
+        return "Tarea{" +
+                "id=" + id +
+                ", descripcion='" + descripcion + '\'' +
+                ", estado=" + estado +
+                ", nombre='" + nombre + '\'' +
+                ", usuario=" + usuario +
+                '}';
+    }
 }

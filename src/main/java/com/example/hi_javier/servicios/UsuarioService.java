@@ -35,5 +35,7 @@ public class UsuarioService {
     public void guardarUsuario(Usuario user) {
         usuarios.save(user);
     }
-
+    public Integer cuentausers() {
+        return usuarios.findByEstado();
+    }
 }
