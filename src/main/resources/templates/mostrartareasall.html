@@ -28,7 +28,7 @@
         <td th:text="${tarea.getDescripcion()}"></td>
         <td th:text="${tarea.getEstado()}"></td>
         <td th:text="${tarea.getUsuario().getNif()}"></td>
-        <form th:action="@{/admin/usuario/editar}" method="get">
+        <form th:action="@{/admin/tareas/editar}" method="get">
         <td><button class="btn btn-primary" type="submit" th:value="${tarea.getId()}" name="nif">Editar</button></td>
         </form>
         <td>

@@ -131,6 +131,11 @@ public class Controlador {
          tareas.guardarTarea(tarea);
          return "redirect:/user/tareas/listado";
     }
+    @RequestMapping("/editartareaadmin")
+    public String peticionEditarTA(Authentication aut, Tarea tarea) {
+        tareas.guardarTarea(tarea);
+        return "redirect:/user/tareas/listado";
+    }
     @RequestMapping("/elminartarea")
     public String peticionEliminarT(Authentication aut, Tarea tarea,HttpServletRequest request) {
         String id = request.getParameter("id");
@@ -213,6 +218,25 @@ public class Controlador {
         mv.setViewName("editarusuarios");
         return mv;
     }
+
+    @RequestMapping("/admin/tareas/editar")
+    public ModelAndView peticioTareasEditar(Authentication aut, HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("nif"));
+        System.out.println(id);
+        Optional<Tarea> tareaOptional= tareas.buscarTarea(String.valueOf(id));
+        Tarea tarea=tareaOptional.get();
+        System.out.println(tareaOptional.get().getUsuario().getNif());
+        ModelAndView mv = new ModelAndView();
+        if(aut==null)
+            mv.addObject("user", "No se ha iniciado sesión");
+        else
+            mv.addObject("user", aut.getName());
+
+        mv.addObject("tarea", tarea);
+        mv.setViewName("editartareasadmin");
+        return mv;
+    }
+
     @RequestMapping("/admin/tareas")
     public ModelAndView peticioTareaMostrar(Authentication aut) {
         ModelAndView mv = new ModelAndView();
