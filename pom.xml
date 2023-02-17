@@ -54,7 +54,6 @@
             <version>8.0.31</version>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -63,5 +62,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

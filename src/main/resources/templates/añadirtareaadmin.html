@@ -8,10 +8,9 @@
 <body>
 <header th:insert="plantilla.html">
 </header>
-<h1>Crear Tarea</h1>
 <form th:action="@{/creartareaadmin}"method="post" th:object="${tarea}"></form>
 <div class="login-box">
-  <h2>Editar tarea</h2>
+  <h2>Crear tarea</h2>
   <form method="post" action="/creartareaadmin">
     <div class="user-box">
       <input type="text" id="user" name="user" required="" th:field="*{tarea.usuario.nif}">
