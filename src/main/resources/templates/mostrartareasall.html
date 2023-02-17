@@ -18,9 +18,7 @@
     <th scope="col">Acción</th>
   </tr>
   </thead>
-
   <tbody>
-
     <th:block th:each="user : ${listaUsuarios}">
       <tr th:each="tarea : ${user.getTareas()}">
 
@@ -37,7 +35,6 @@
           </form>
       </tr>
     </th:block>
-
   </tbody>
 </table>
 <a class="btn btn-primary" th:href="@{/admin/tarea/añadir}">Crear tarea</a>

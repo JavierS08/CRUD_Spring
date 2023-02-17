@@ -6,10 +6,8 @@
 </head>
 <body>
 <header th:insert="plantilla.html">
-
 </header>
 <h1>Mostrar Usuarios</h1>
-
 <table class="table">
     <thead>
     <tr>
@@ -21,7 +19,6 @@
     </tr>
     </thead>
     <tbody>
-
     <tr th:each="user:${listaUsuarios}">
         <td th:text="${user.getNif()}"></td>
         <td th:text="${user.getNombre()}"></td>
@@ -35,14 +32,9 @@
                 <button class="btn btn-danger" type="submit" th:value="${user.getNif()}" name="nif">Eliminar</button>
             </form>
             </td>
-
-        <!-- Eliminar-->
-
-
     </tr>
     </tbody>
 </table>
-
 <a class="btn btn-primary" type="submit" th:href="@{/admin/usuario/nuevo}">Nuevo Usuario</a>
 </body>
 </html>

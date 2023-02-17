@@ -18,7 +18,6 @@
             <th scope="col">Acción</th>
         </tr>
         </thead>
-
         <tbody>
         <form th:action="@{/user/tareas/editar}" method="get">
         <tr th:each="tarea:${usuario.getTareas()}">
@@ -35,9 +34,7 @@
         </form>
         </tbody>
     </table>
-
 </div>
-
     <a class="btn btn-primary" th:href="@{/user/tareas/nueva}">
         Crear tarea
     </a>
