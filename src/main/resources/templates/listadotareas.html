@@ -19,19 +19,21 @@
         </tr>
         </thead>
         <tbody>
-        <form th:action="@{/user/tareas/editar}" method="get">
+
         <tr th:each="tarea:${usuario.getTareas()}">
                 <td th:text="${tarea.getNombre()}"></td>
                 <td th:text="${tarea.getDescripcion()}"></td>
                 <td th:text="${tarea.getEstado()}"></td>
+            <form th:action="@{/user/tareas/editar}" method="get">
             <td><button class="btn btn-primary" type="submit" th:value="${tarea.getId()}" name="id">Editar</button></td>
+            </form>
             <td>
                     <form th:action="@{/elminartarea}" method="get">
                 <button class="btn btn-danger" type="submit" th:value="${tarea.getId()}" name="id">Eliminar</button>
                     </form>
             </td>
         </tr>
-        </form>
+
         </tbody>
     </table>
 </div>

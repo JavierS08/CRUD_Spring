@@ -20,4 +20,6 @@ public interface TareaRepositorio extends JpaRepository<Tarea, String> {
     public Integer findByEstado3();
     @Query("select count(t) as cuenta from Tarea t where t.estado=4")
     public Integer findByEstado4();
+    @Query("SELECT AVG(t.cuenta) FROM (SELECT COUNT(t) AS cuenta FROM Tarea t GROUP BY t.usuario) t")
+    Double promedio();
 }

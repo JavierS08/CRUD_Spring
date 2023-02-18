@@ -126,7 +126,8 @@ public class Controlador {
         List<Tarea> t = tareas.findByNif(nif);
         List <Role> r = roles.findByNif(nif);
         ModelAndView mv = new ModelAndView();
-        if (userOptional.isPresent()) {
+        Usuario user1= usuarios.buscarUsuario(aut.getName()).get();
+        if (userOptional.isPresent() && !user1.getNif().equals("11111A")) {
             t.forEach(tarea -> tareas.borrar(tarea));
             r.forEach(rol -> roles.borrarRol(rol));
             usuarios.borrar(user);
@@ -284,6 +285,7 @@ public class Controlador {
     @RequestMapping("/admin")
     public ModelAndView peticioAdmin(Authentication aut) {
         ModelAndView mv = new ModelAndView();
+        Double promedioTareas = tareas.promedioTareas();
         if(aut==null)
             mv.addObject("user", "No se ha iniciado sesión");
         else
@@ -293,6 +295,7 @@ public class Controlador {
         mv.addObject("terminada", tareas.cuentaTareasTer());
         mv.addObject("eliminada", tareas.cuentaTareasElimina());
         mv.addObject("cuentuser", usuarios.cuentausers());
+        mv.addObject("promedioTareas", promedioTareas);
         mv.setViewName("administrador");
         return mv;
     }

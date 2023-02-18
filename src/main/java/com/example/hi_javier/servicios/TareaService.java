@@ -42,4 +42,7 @@ public class TareaService {
     public Integer cuentaTareasElimina() {
         return tareas.findByEstado4();
     }
+    public Double promedioTareas(){
+        return tareas.promedio();
+    }
 }
